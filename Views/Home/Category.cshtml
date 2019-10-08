@@ -1,0 +1,27 @@
+@model Products_Categories.Models.Association
+<a href = '/'>Back</a>
+<h1 style = 'margin-bottom: 20px'>@ViewBag.category.Name</h1>
+<div style = 'display: inline-block; width: 300px; vertical-align: top'>
+    <h3>Products:</h3>
+    <ul>
+        @{
+            foreach(Association product in ViewBag.category.Products) {
+                <li>@product.Product.Name</li>
+            }
+        }
+    </ul>
+</div>
+<div style = 'display: inline-block; width: 300px; vertical-align: top'>
+    <h3>Add Product: </h3>
+    <form action = '/add/product' method="post"> 
+        <input type='hidden' value='@ViewBag.category.CategoryId' asp-for="CategoryId">
+        <select asp-for="ProductId">
+            @{
+                foreach(Product product in ViewBag.products) {
+                    <option value=@product.ProductId>@product.Name</option>
+                }
+            }
+        </select>
+        <input type="submit" value="Submit" class = 'btn btn-primary'>
+    </form>
+</div>

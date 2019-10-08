@@ -1,0 +1,24 @@
+@model Products_Categories.Models.Category
+<div style = 'width: 100%;'>
+    <a href = '/products'>Products</a>
+    <p style = 'display:inline'> | Categories</p>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>New Category</h1>
+    <form asp-action="CreateCategory" asp-controller="Home" method="post">
+        <span asp-validation-for="Name"></span>
+        <p></p>
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name">
+        <p></p>
+        <input type="submit" value="Create" class = 'btn btn-primary'>
+    </form>
+</div>
+<div style = 'display: inline-block; width: 40%; padding: 20px; vertical-align: top'>
+    <h1>Existing Categories</h1>
+    @{
+        foreach(Category category in ViewBag.categories) {
+            <a style = 'display: block' href = '/categories/@category.CategoryId'>@category.Name</a>
+        }
+    }
+</div>
